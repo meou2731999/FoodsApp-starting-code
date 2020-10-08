@@ -12,6 +12,8 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
+import retrofit2.http.HEAD;
+
 public class Meals {
 
     @SerializedName("meals")
@@ -25,7 +27,6 @@ public class Meals {
     }
 
     public class Meal {
-
         @SerializedName("idMeal")
         @Expose
         private String idMeal;
@@ -587,6 +588,5 @@ public class Meals {
         public void setDateModified(Object dateModified) {
             this.dateModified = dateModified;
         }
-
     }
 }

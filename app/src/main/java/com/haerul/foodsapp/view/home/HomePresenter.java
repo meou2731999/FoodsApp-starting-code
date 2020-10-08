@@ -15,6 +15,7 @@ import com.haerul.foodsapp.model.Meals;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.HEAD;
 
 class HomePresenter {
 
@@ -68,14 +69,17 @@ class HomePresenter {
 
                     view.setCategory(response.body().getCategories());
 
-                }
-                else {
-                    view.onErrorLoading(response.message());
+                    if (response.isSuccessful() && response.body() != null) {
+                        view.setCategory(response.body().getCategories());
+                    } else {
+                        view.onErrorLoading(response.message());
+                    }
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<Categories> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<Categories> call, @NonNull Throwable t) {
+
                 view.hideLoading();
                 view.onErrorLoading(t.getLocalizedMessage());
             }
